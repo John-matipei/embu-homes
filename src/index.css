@@ -1,0 +1,674 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: #f7f8fc;
+  color: #111827;
+  line-height: 1.6;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+}
+
+.container.narrow {
+  width: min(850px, 92%);
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+  padding: 70px 0;
+}
+
+.page-section {
+  min-height: 100vh;
+  padding-top: 40px;
+  padding-bottom: 70px;
+}
+
+
+/* =========================================================
+   BACK LINK
+========================================================= */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  transition: 0.2s ease;
+}
+
+.back-link:hover {
+  color: #2563eb;
+}
+
+
+/* =========================================================
+   FORM HEADING
+========================================================= */
+
+.form-heading {
+  margin-bottom: 35px;
+}
+
+.form-heading h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  margin: 8px 0 12px;
+  color: #111827;
+}
+
+.form-heading p {
+  max-width: 650px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.eyebrow.dark {
+  color: #2563eb;
+}
+
+
+/* =========================================================
+   PROPERTY FORM
+========================================================= */
+
+.property-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+
+/* =========================================================
+   FORM SECTIONS
+========================================================= */
+
+.form-section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.form-section h2 {
+  font-size: 20px;
+  margin-bottom: 22px;
+  color: #111827;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+
+/* =========================================================
+   FORM LABELS
+========================================================= */
+
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.form-grid label.wide {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  padding: 13px 14px;
+  background: #ffffff;
+  color: #111827;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-grid input::placeholder,
+.form-grid textarea::placeholder {
+  color: #9ca3af;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  border-color: #2563eb;
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-grid textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+
+/* =========================================================
+   PROPERTY PHOTO UPLOAD
+========================================================= */
+
+.photo-upload-box {
+  width: 100%;
+  min-height: 240px;
+
+  border: 2px dashed #cbd5e1;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 30px 20px;
+
+  text-align: center;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  background: #fafbff;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.photo-upload-box:hover {
+  border-color: #2563eb;
+  background: #f8faff;
+  transform: translateY(-1px);
+}
+
+.photo-upload-box svg {
+  color: #2563eb;
+  margin-bottom: 5px;
+}
+
+.photo-upload-box strong {
+  color: #111827;
+  font-size: 17px;
+}
+
+.photo-upload-box span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.photo-upload-box small {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+.photo-preview-wrapper {
+  width: 100%;
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 430px;
+
+  object-fit: cover;
+
+  display: block;
+
+  border-radius: 14px;
+
+  border: 1px solid #e5e7eb;
+}
+
+
+/* =========================================================
+   PHOTO ACTIONS
+========================================================= */
+
+.photo-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 15px;
+
+  flex-wrap: wrap;
+}
+
+.photo-actions label {
+  cursor: pointer;
+}
+
+.remove-photo-btn {
+  color: #dc2626 !important;
+  border-color: #fecaca !important;
+}
+
+.remove-photo-btn:hover {
+  background: #fef2f2 !important;
+}
+
+
+/* =========================================================
+   MUTED TEXT
+========================================================= */
+
+.muted {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   AMENITIES
+========================================================= */
+
+.amenity-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.amenity-tags span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 8px 11px;
+
+  border-radius: 999px;
+
+  background: #eff6ff;
+
+  color: #1d4ed8;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.amenity-tags button {
+  border: none;
+  background: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2563eb;
+
+  padding: 0;
+}
+
+.amenity-tags button:hover {
+  color: #dc2626;
+}
+
+
+/* =========================================================
+   ADD AMENITY
+========================================================= */
+
+.amenity-add {
+  display: flex;
+  gap: 10px;
+}
+
+.amenity-add input {
+  flex: 1;
+
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+
+  padding: 12px 14px;
+
+  outline: none;
+}
+
+.amenity-add input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+  border: none;
+
+  min-height: 44px;
+
+  padding: 10px 17px;
+
+  border-radius: 9px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  font-weight: 700;
+
+  font-size: 14px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+
+/* Primary */
+
+.btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+
+/* Outline */
+
+.btn-outline {
+  background: #ffffff;
+  color: #374151;
+
+  border: 1px solid #d1d5db;
+}
+
+.btn-outline:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+
+/* Large */
+
+.btn-large {
+  min-height: 50px;
+  padding: 13px 24px;
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   FORM ERROR
+========================================================= */
+
+.form-error {
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+
+  color: #b91c1c;
+
+  padding: 13px 15px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding-top: 5px;
+}
+
+
+/* =========================================================
+   GENERAL HOUSE CARD STYLES
+========================================================= */
+
+.house-card {
+  background: #ffffff;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  border: 1px solid #e5e7eb;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.house-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.house-card img {
+  width: 100%;
+
+  height: 220px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .page-section {
+    padding-top: 30px;
+  }
+
+  .form-section {
+    padding: 22px 18px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid label.wide {
+    grid-column: auto;
+  }
+
+  .form-heading {
+    margin-bottom: 25px;
+  }
+
+  .form-heading h1 {
+    font-size: 30px;
+  }
+
+  .photo-upload-box {
+    min-height: 210px;
+  }
+
+  .photo-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .photo-actions .btn {
+    width: 100%;
+  }
+
+  .amenity-add {
+    flex-direction: column;
+  }
+
+  .amenity-add .btn {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE DEVICES
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .container,
+  .container.narrow {
+    width: 94%;
+  }
+
+  .form-section {
+    padding: 18px 15px;
+    border-radius: 12px;
+  }
+
+  .form-section h2 {
+    font-size: 18px;
+  }
+
+  .form-heading h1 {
+    font-size: 26px;
+  }
+
+  .form-heading p {
+    font-size: 14px;
+  }
+
+  .photo-upload-box {
+    min-height: 190px;
+    padding: 22px 15px;
+  }
+
+  .photo-upload-box strong {
+    font-size: 16px;
+  }
+
+  .photo-upload-box span {
+    font-size: 13px;
+  }
+
+}
