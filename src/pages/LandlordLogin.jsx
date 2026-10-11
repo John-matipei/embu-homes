@@ -1,67 +1,50 @@
 import React, { useState } from "react";
-
 import {
   Building2,
   Eye,
   EyeOff,
   LockKeyhole,
   ShieldCheck,
+  Loader2,
 } from "lucide-react";
-
 import {
   Link,
   useNavigate,
 } from "react-router-dom";
+import { loginLandlord } from "../services/api";
 
 export default function LandlordLogin() {
-
-  const [show, setShow] =
-    useState(false);
-
-  const [email, setEmail] =
-    useState("");
-
-  const [password, setPassword] =
-    useState("");
-
-  const [error, setError] =
-    useState("");
-
+  const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  
   const navigate = useNavigate();
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-
     setError("");
+    setIsLoading(true);
 
-    if (
-      email.trim().toLowerCase() ===
-        "landlord@embu.com" &&
-      password === "Embu123!"
-    ) {
-      localStorage.setItem(
-        "esh_landlord_session",
-        "active"
-      );
-
-      localStorage.setItem(
-        "esh_landlord_email",
-        email.trim()
-      );
-
+    try {
+      const result = await loginLandlord(email.trim(), password);
+      
+      localStorage.setItem("esh_landlord_session", result.token);
+      localStorage.setItem("esh_landlord_email", result.landlord.email);
+      
       navigate("/landlord");
-    } else {
-      setError(
-        "Incorrect demo credentials."
-      );
+      
+    } catch (err) {
+      setError(err.message || "Invalid email or password.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <section className="auth-page">
-
       <div className="auth-card">
-
         <div className="auth-logo">
           <Building2 size={25} />
         </div>
@@ -75,60 +58,40 @@ export default function LandlordLogin() {
         </h1>
 
         <p className="muted">
-          Sign in to publish houses, update
-          vacancy and manage your listings.
+          Sign in with the credentials provided by the administrator.
         </p>
 
         <form onSubmit={submit}>
-
           <label>
             Email
-
             <input
               type="email"
               value={email}
-              onChange={(e) =>
-                setEmail(e.target.value)
-              }
-              placeholder="landlord@example.com"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
               required
+              disabled={isLoading}
             />
           </label>
 
           <label>
             Password
-
             <div className="password-field">
-
               <input
-                type={
-                  show
-                    ? "text"
-                    : "password"
-                }
+                type={show ? "text" : "password"}
                 value={password}
-                onChange={(e) =>
-                  setPassword(
-                    e.target.value
-                  )
-                }
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
+                disabled={isLoading}
               />
-
               <button
                 type="button"
-                onClick={() =>
-                  setShow(!show)
-                }
+                onClick={() => setShow(!show)}
+                disabled={isLoading}
               >
-                {show ? (
-                  <EyeOff />
-                ) : (
-                  <Eye />
-                )}
+                {show ? <EyeOff /> : <Eye />}
               </button>
-
             </div>
           </label>
 
@@ -141,42 +104,45 @@ export default function LandlordLogin() {
           <button
             className="btn btn-primary btn-large full"
             type="submit"
+            disabled={isLoading}
           >
-            <LockKeyhole size={18} />
-            Secure sign in
+            {isLoading ? (
+              <>
+                <Loader2 size={18} className="spin" />
+                Signing in...
+              </>
+            ) : (
+              <>
+                <LockKeyhole size={18} />
+                Secure sign in
+              </>
+            )}
           </button>
-
         </form>
-
-        {/* <div className="demo-box">
-          <strong>
-            Local demo login
-          </strong>
-
-          <span>
-            landlord@embu.com
-          </span>
-
-          <span>
-            Embu123!
-          </span>
-        </div> */}
 
         <div className="security-line">
           <ShieldCheck size={17} />
-          
-
-          Only Authorized personel are Permited.
+          Secure authentication system
         </div>
 
-        <Link
-          to="/"
-          className="back-link centered-link"
-        >
+        <Link to="/" className="back-link centered-link">
           ← Back to website
         </Link>
-
       </div>
+
+      <style>{`
+        .spin {
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        button:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+      `}</style>
     </section>
   );
 }

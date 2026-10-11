@@ -225,6 +225,16 @@ export default function HouseDetails({
             >
               WhatsApp landlord
             </a>
+            // In HouseDetails.jsx, inside the contact-card div, add this link:
+
+<Link
+  to={`/booking/${house.id}`}
+  className="btn btn-primary btn-large full"
+  style={{ marginTop: "10px", background: "#1d7c43" }}
+>
+  <Calendar size={18} />
+  Book Viewing
+</Link>
 
             <div className="safety-note">
               <ShieldCheck size={18} />
